@@ -7,7 +7,7 @@ from config import (
     COLOR_OK,
     CONTOUR_THICKNESS,
 )
-from utils import format_number
+from .utils import format_number
 
 
 def draw_eye_contours(frame, left_eye, right_eye):

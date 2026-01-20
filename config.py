@@ -21,8 +21,16 @@ COLOR_ALERT = (0, 0, 255)
 COLOR_WARNING = (0, 255, 255)
 COLOR_OK = (0, 255, 0)
 
-# Path to facial landmarks model (relative path recommended)
-LANDMARK_MODEL_PATH = "models/shape_predictor_68_face_landmarks.dat"
+import os
+
+# This finds the folder where config.py lives
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# This creates the full path automatically
+LANDMARK_MODEL_PATH = os.path.join(BASE_DIR, "models", "shape_predictor_68_face_landmarks.dat")
+
+# Print it to the terminal so we can see if it's correct when we run
+print(f"[DEBUG] Looking for model at: {LANDMARK_MODEL_PATH}")
 
 # Default CSV log file
 CSV_LOG_PATH = "data/logs/sleep_log.csv"

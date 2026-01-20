@@ -12,7 +12,7 @@ from src.landmark import LandmarkDetector
 from src.ear_calc import compute_average_ear
 from src.perclos import PERCLOSCalculator
 from src.visualize import render_all
-from utils import append_to_csv, ensure_directory, get_timestamp
+from src.utils import append_to_csv, ensure_directory, get_timestamp, format_number
 
 
 def parse_args():
@@ -33,9 +33,9 @@ def main():
     header = ["timestamp", "frame_index", "ear", "closed_flag", "perclos", "sleep_score", "blink_count"]
 
     # Initialize modules
-    src = VideoSource(source=args.source, video_path=args.video)
-    face_detector = FaceDetector()
-    landmark_detector = LandmarkDetector(model_path=LANDMARK_MODEL_PATH)
+    src = videosource(source=args.source, video_path=args.video)
+    face_detector = facedetector()
+    landmark_detector = LandmarkDetector(model_path = LANDMARK_MODEL_PATH)
     perclos_calc = PERCLOSCalculator()
 
     frame_idx = 0
@@ -50,7 +50,7 @@ def main():
         frame_idx += 1
 
         # Detect faces
-        rects = face_detector.detect_faces(gray)
+        rects = face_detector.detect_face(gray)
 
         ear_avg = 0.0
         left_eye = None
